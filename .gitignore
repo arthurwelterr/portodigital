@@ -1,0 +1,42 @@
+# ====================================================================
+# GITIGNORE COMPLETO - PROJETO PYTHON / WEB (PORTO DIGITAL)
+# ====================================================================
+
+# --- Arquivos de Sistema (Nunca subir) ---
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Ambientes Virtuais e Dependências do Python ---
+.venv/
+venv/
+ENV/
+env/
+/bin/
+/lib/
+/include/
+/pip-selfcheck.json
+
+# --- Caches e Arquivos Temporários do Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.installed.cfg
+.pip[]
+
+# --- IDEs e Editores de Código ---
+# Configurações do PyCharm / JetBrains (visto nos prints)
+.idea/
+
+# Configurações do VS Code
+.vscode/
+*.code-workspace
+
+# --- Segurança e Configurações Locais ---
+# Arquivos onde você guarda senhas ou chaves de API (como a do Gemini)
+.env
+.env.local
+*.secret
