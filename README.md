@@ -1,8 +1,3 @@
-Entendido! Deixei o documento inteiro envelopado dentro de um único bloco de código markdown para que você possa clicar no botão de copiar e levar tudo de uma vez só.
-
-Também limpei os espaços invisíveis (`&nbsp;`) que costumam quebrar a formatação no terminal e arrumei as listas duplicadas do texto. Aqui está:
-
-```markdown
 # 🚀 Residência Porto Digital | Squad 24
 
 Sistema web inteligente de geração automática de criativos para redes sociais, utilizando **Google Gemini AI + Python + Playwright**, capaz de transformar um tema em um post visual pronto (1080x1080).
@@ -159,7 +154,3 @@ A API estará disponível em: `http://127.0.0.1:5000`
 #### Resposta:
 
 * Retorna o arquivo de imagem no formato **PNG** gerado automaticamente, pronto para download ou visualização direta.
-
-```
-
-```
