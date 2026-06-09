@@ -1,81 +1,165 @@
+Entendido! Deixei o documento inteiro envelopado dentro de um único bloco de código markdown para que você possa clicar no botão de copiar e levar tudo de uma vez só.
+
+Também limpei os espaços invisíveis (`&nbsp;`) que costumam quebrar a formatação no terminal e arrumei as listas duplicadas do texto. Aqui está:
+
+```markdown
 # 🚀 Residência Porto Digital | Squad 24
 
-Interface Web inteligente integrada à API do Google Gemini para processamento de requisições e automação de tarefas.
+Sistema web inteligente de geração automática de criativos para redes sociais, utilizando **Google Gemini AI + Python + Playwright**, capaz de transformar um tema em um post visual pronto (1080x1080).
 
 ---
 
 ## 📋 Sobre o Projeto
 
-Este projeto foi desenvolvido como parte do programa de residência tecnológica do **Porto Digital**. A aplicação consiste em um sistema web completo que utiliza inteligência artificial para otimizar fluxos de trabalho. 
+Este projeto foi desenvolvido no programa de residência tecnológica do **Porto Digital**.
 
-A estrutura do projeto unifica um backend em Python com um frontend dinâmico e um banco de dados estruturado.
+A aplicação funciona como um **gerador automático de criativos para redes sociais**, onde o usuário informa um tema e o sistema gera automaticamente um post completo, incluindo:
+
+* Ideias e keywords com IA (Google Gemini)
+* Prompt de imagem
+* Copy para redes sociais
+* Geração de imagem via serviço externo
+* Renderização de um post final em HTML (1080x1080)
+* Exportação da imagem final em PNG
+
+---
+
+## 🧠 Fluxo da Aplicação
+
+1. O usuário envia um tema via API (`/gerar`).
+2. O Backend processa o tema com o **Google Gemini**.
+3. A IA retorna: Keywords, Prompt de imagem, Texto do post e Descrição.
+4. O sistema gera uma imagem via URL externa.
+5. O **Playwright** renderiza um HTML (`template.html`).
+6. O sistema exporta um PNG final pronto para uso.
 
 ---
 
 ## 📁 Estrutura do Repositório
 
-O repositório foi organizado separando os escopos do projeto para facilitar a manutenção e escalabilidade:
+```text
+backend/
+├── app.py              # API Flask principal
+├── main.py             # Lógica de IA e geração de criativos
+└── template.html       # Template HTML usado no render do post
 
-* **`backend/`**: Contém a lógica de servidor da aplicação em Python (arquivos `main.py` e `app.py`).
-* **`frontend/`**: Interface do usuário desenvolvida com arquivos HTML (`index.html` e `template.html`).
-* **`database/`**: Scripts de modelagem e criação do banco de dados (arquivo `projeto.sql`).
-* **`docs/`**: Documentação técnica, protótipos de tela e diagramas do projeto.
+frontend/
+├── index.html          # Interface do usuário
+└── template.html       # Template visual do post (usado pelo backend)
+
+database/
+└── projeto.sql         # Estrutura do banco de dados (se aplicável)
+
+docs/
+└── documentação técnica e protótipos
+
+```
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-A stack principal do projeto foi escolhida para garantir performance e facilidade de integração:
+### Backend & IA
 
-* **Backend:** Python 3
-* **IA:** Google Gemini API (Biblioteca `google-generativeai`)
-* **Frontend:** HTML5, CSS3 e JavaScript (ES6)
-* **Banco de Dados:** SQL (Modelagem inclusa)
+* Python 3.10+
+* Flask & Flask-CORS
+* Google Gemini API (`google-genai`)
+
+### Automação & Renderização
+
+* Playwright (Chromium)
+* HTML5 / CSS3 + Base64 image embedding
+* Renderização de imagem via screenshot automatizado
+
+### Frontend
+
+* HTML5 / CSS3 / JavaScript (Vanilla)
 
 ---
 
 ## ⚙️ Como Executar o Projeto
 
-Siga o passo a passo abaixo para rodar a aplicação localmente na sua máquina:
-
 ### 1. Pré-requisitos
-Certifique-se de ter o **Python 3** instalado no seu sistema.
 
-### 2. Clonar o Repositório
+* Python 3.10 ou superior
+* Gerenciador de pacotes `pip`
+* Chromium (instalado via Playwright)
+
+### 2. Clonar o repositório
+
 ```bash
-Abra o terminal e execute o comando:
 git clone [https://github.com/arthurwelterr/portodigital.git](https://github.com/arthurwelterr/portodigital.git)
 cd portodigital
+
 ```
 
-### 3. Clonar o Repositório
-Instale a biblioteca oficial da API do Gemini e outras dependências necessárias:
+### 3. Instalar as dependências
+
 ```bash
-pip install google-generativeai
+pip install flask flask-cors google-genai playwright
+python -m playwright install chromium
+
 ```
 
-### 4. Configurar a Chave da API (Segurança)
-Crie um arquivo chamado .env na raiz do seu projeto (ele já está protegido no .gitignore para não vazar no GitHub) e adicione a sua chave do Gemini:
+### 4. Configurar a variável de ambiente (API Key)
+
+Substitua `"SUA_CHAVE_AQUI"` pela sua chave real da API do Gemini.
+
+#### No Linux / Git Bash:
+
 ```bash
-GEMINI_API_KEY=sua_chave_secreta_aqui
+export GEMINI_API_KEY="SUA_CHAVE_AQUI"
+
 ```
 
-### 5. Executar a Aplicação
-Navegue até a pasta do backend e rode o arquivo principal para subir o servidor:
+#### No Windows (PowerShell):
+
+```powershell
+$env:GEMINI_API_KEY="SUA_CHAVE_AQUI"
+
+```
+
+#### No Windows (Prompt de Comando - CMD):
+
+```cmd
+set GEMINI_API_KEY=SUA_CHAVE_AQUI
+
+```
+
+### 5. Executar o backend
+
 ```bash
 cd backend
 python app.py
+
 ```
-Abra o seu navegador e acesse o endereço local indicado no terminal (ex: http://localhost:5000 ou similar).
+
+A API estará disponível em: `http://127.0.0.1:5000`
 
 ---
 
-### 🔄 Como enviar a atualização:
+## 📡 Rotas da API
 
-Abra o arquivo `README.md` no seu computador, cole esse texto novo, salve e digite os comandos no terminal:
+### 🔹 Gerar Criativo
 
-```bash
-git add README.md
-git commit -m "Docs: atualiza estrutura de pastas no README"
-git push origin main
+* **Endpoint:** `/gerar`
+* **Método:** `POST`
+* **Headers:** `Content-Type: application/json`
+
+#### Corpo da requisição (JSON):
+
+```json
+{
+  "tema": "marketing digital com IA",
+  "brand": "Minha Marca"
+}
+
+```
+
+#### Resposta:
+
+* Retorna o arquivo de imagem no formato **PNG** gerado automaticamente, pronto para download ou visualização direta.
+
+```
+
 ```
