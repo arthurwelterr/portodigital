@@ -8,7 +8,12 @@ import json
 import os
 
 
-TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), "template.html")
+TEMPLATE_PATH = os.path.join(
+    os.path.dirname(__file__),
+    "..",
+    "frontend",
+    "template.html"
+)
 
 
 class GerarCriativo(ABC):
@@ -97,7 +102,7 @@ class GerarCriativoFake(GerarCriativo):
 
     def generate_image(self, image_prompt):
         encoded = urllib.parse.quote(image_prompt)
-        return f"https://image.pollinations.ai/prompt/{encoded}?width=1080&height=1080&nologo=true"
+        return "https://picsum.photos/1080/1080"
 
 
 class GerarCriativoIA(GerarCriativo):
@@ -168,4 +173,4 @@ class GerarCriativoIA(GerarCriativo):
 
     def generate_image(self, image_prompt):
         encoded = urllib.parse.quote(image_prompt)
-        return f"https://image.pollinations.ai/prompt/{encoded}?width=1080&height=1080&nologo=true"
+        return "https://picsum.photos/1080/1080"
