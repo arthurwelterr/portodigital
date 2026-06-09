@@ -6,6 +6,8 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 OUTPUT_PATH = "post.png"
 
 
@@ -18,7 +20,7 @@ def get_criativo():
 
 @app.route("/")
 def index():
-    return send_file("index.html")
+    return send_file(os.path.join(BASE_DIR, "frontend", "index.html"))
 
 
 @app.route("/gerar", methods=["POST"])
